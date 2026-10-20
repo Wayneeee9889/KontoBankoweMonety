@@ -14,34 +14,70 @@ namespace KontoBankoweMonety
             get { return _iloscmonet; }
         }
 
+        private readonly decimal[] _przyjmowaneMonety = new decimal[] { 5, 2, 1, 0.5m, 0.2m, 0.1m };
 
-
-        public void wrzucMonete(KontoBankowe konto, double moneta)
+        public void wrzucMonete(KontoBankowe konto, string Moneta)
         {
-            switch (moneta)
-            {
-                case 1.0:
-                    konto.Saldo = +1.0;
-                    break;
-                case 2.0:
-                    konto.Saldo = +2.0;
-                    break;
-                case 5.0:
-                    konto.Saldo = +5.0;
-                    break;
-                case 0.5:
-                    konto.Saldo = +0.5;
-                    break;
-                case 0.2:
-                    konto.Saldo = +0.2;
-                    break;
-                case 0.1:
-                    konto.Saldo = +0.1;
-                    break;
-                default:
-                    Console.WriteLine("niema takiej monety!");
-                    break;
+
+            bool czyUdanyParse = decimal.TryParse(Moneta, out decimal wartoscMonety);
+
+            if (!czyUdanyParse){
+                Console.WriteLine("Nieudany odczyt monety");
+                return;
             }
+            //sprawdż czy rzucona moneta jest z zakresu _przyjmowaneMonety
+
+            foreach (decimal nominal in _przyjmowaneMonety)
+            {
+                if(wartoscMonety == nominal)
+                {
+                    konto.Saldo += nominal;
+                    _iloscmonet++;
+                    Console.WriteLine("wrzucono: " + nominal);
+                }
+            }
+
+
+            //Console.WriteLine($"Wrzuconmo monetę o wartosci: {wartosc}");
+        
+
+
+            //switch (moneta)
+            //{
+            //    case 1.0:
+            //        konto.Saldo += 1.0;
+            //        Console.WriteLine("Wrzucono 1zł");
+            //        _iloscmonet += 1;
+            //        break;
+            //    case 2.0:
+            //        konto.Saldo += 2.0;
+            //        Console.WriteLine("Wrzucono 2zł");
+            //        _iloscmonet += 1;
+            //        break;
+            //    case 5.0:
+            //        konto.Saldo += 5.0;
+            //        Console.WriteLine("Wrzucono 5zł");
+            //        _iloscmonet += 1;
+            //        break;
+            //    case 0.5:
+            //        konto.Saldo += 0.5;
+            //        Console.WriteLine("Wrzucono 0.50zł");
+            //        _iloscmonet += 1;
+            //        break;
+            //    case 0.2:
+            //        konto.Saldo += 0.2;
+            //        Console.WriteLine("Wrzucono 0.20zł");
+            //        _iloscmonet += 1;
+            //        break;
+            //    case 0.1:
+            //        konto.Saldo += 0.1;
+            //        Console.WriteLine("Wrzucono 0.10zł");
+            //        _iloscmonet += 1;
+            //        break;
+            //    default:
+            //        Console.WriteLine("niema takiej monety!");
+            ////        break;
+            //}
         }
     }
 }

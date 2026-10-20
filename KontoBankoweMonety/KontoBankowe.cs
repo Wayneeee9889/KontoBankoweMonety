@@ -12,13 +12,13 @@ namespace KontoBankoweMonety
         //kontoBankowe.wplac(0.1);
 
         //Console.Writeline(_saldo);
-        private double _saldo;
+        private decimal _saldo;
         private string _wlasciciel;
 
 
 
 
-        public double Saldo
+        public decimal Saldo
         {
             get
             {
@@ -26,7 +26,7 @@ namespace KontoBankoweMonety
             }
             set
             {
-                _saldo = Saldo;
+                _saldo = value;
 
             }
         }
@@ -51,11 +51,11 @@ namespace KontoBankoweMonety
             }
         }
 
-        public KontoBankowe(string nowyWlasciciel, double Saldo)
+        public KontoBankowe(string nowyWlasciciel)
         {
             _wlasciciel = nowyWlasciciel;
-            _saldo = Saldo;
         }
+// numer musi być generowany wraz z utworzeniem konta
 
         public void wyswietlInfo()
         {

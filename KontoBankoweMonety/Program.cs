@@ -4,13 +4,15 @@
     {
         static void Main(string[] args)
         {
-            KontoBankowe KontoJana = new KontoBankowe("Jan", 0.5);
+            KontoBankowe KontoJana = new KontoBankowe("Jan");
 
             Automat automat = new Automat();
 
 
-            automat.wrzucMonete(KontoJana, 0.5);
-            
+            automat.wrzucMonete(KontoJana, "5");
+            KontoJana.wyswietlInfo();
+            automat.wrzucMonete(KontoJana, "5");
+            KontoJana.wyswietlInfo();
         }
     }
 }
