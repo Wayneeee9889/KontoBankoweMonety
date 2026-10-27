@@ -8,12 +8,10 @@ namespace KontoBankoweMonety
     {
 
 
-        //KontoBankowe kontoBankowe = new KontoBankowe("Jan Kowalski", 0.2);
-        //kontoBankowe.wplac(0.1);
-
-        //Console.Writeline(_saldo);
         private decimal _saldo;
         private string _wlasciciel;
+
+        private int _pin;
 
 
 
@@ -27,6 +25,19 @@ namespace KontoBankoweMonety
             set
             {
                 _saldo = value;
+
+            }
+        }
+
+        public int Pin
+        {
+            get
+            {
+                return _pin;
+            }
+            set
+            {
+                _pin = value;
 
             }
         }
@@ -51,14 +62,19 @@ namespace KontoBankoweMonety
             }
         }
 
-        public KontoBankowe(string nowyWlasciciel)
+        public KontoBankowe(string nowyWlasciciel, int pin)
         {
             _wlasciciel = nowyWlasciciel;
+            _pin = pin;
         }
+
+
+
 // numer musi być generowany wraz z utworzeniem konta
 
         public void wyswietlInfo()
         {
+ 
             Console.WriteLine($"Wlaściciel: {_wlasciciel}  |Saldo: {_saldo} ");
         }
     }

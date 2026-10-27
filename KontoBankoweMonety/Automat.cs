@@ -16,25 +16,31 @@ namespace KontoBankoweMonety
 
         private readonly decimal[] _przyjmowaneMonety = new decimal[] { 5, 2, 1, 0.5m, 0.2m, 0.1m };
 
-        public void wrzucMonete(KontoBankowe konto, string Moneta)
+        public void wrzucMonete(KontoBankowe konto, int Pin, string Moneta)
         {
+            if(Pin == konto.Pin){
+                bool czyUdanyParse = decimal.TryParse(Moneta, out decimal wartoscMonety);
 
-            bool czyUdanyParse = decimal.TryParse(Moneta, out decimal wartoscMonety);
-
-            if (!czyUdanyParse){
-                Console.WriteLine("Nieudany odczyt monety");
-                return;
-            }
-            //sprawdż czy rzucona moneta jest z zakresu _przyjmowaneMonety
-
-            foreach (decimal nominal in _przyjmowaneMonety)
-            {
-                if(wartoscMonety == nominal)
+                if (!czyUdanyParse)
                 {
-                    konto.Saldo += nominal;
-                    _iloscmonet++;
-                    Console.WriteLine("wrzucono: " + nominal);
+                    Console.WriteLine("Nieudany odczyt monety.");
+                    return;
                 }
+                //sprawdż czy rzucona moneta jest z zakresu _przyjmowaneMonety
+
+                foreach (decimal nominal in _przyjmowaneMonety)
+                {
+                    if (wartoscMonety == nominal)
+                    {
+                        konto.Saldo += nominal;
+                        _iloscmonet++;
+                        Console.WriteLine("wrzucono: " + nominal);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Niepoprawny pin");
             }
 
 
