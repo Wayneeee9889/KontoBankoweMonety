@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace KontoBankoweMonety
@@ -18,12 +19,15 @@ namespace KontoBankoweMonety
 
         public void wrzucMonete(KontoBankowe konto, int Pin, string Moneta)
         {
+            string monetaUjednoliczonyzapis = Moneta.Replace(",", ".");
+
+
             if(Pin == konto.Pin){
-                bool czyUdanyParse = decimal.TryParse(Moneta, out decimal wartoscMonety);
+                bool czyUdanyParse = decimal.TryParse(Moneta, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture ,out decimal wartoscMonety);
 
                 if (!czyUdanyParse)
                 {
-                    Console.WriteLine("Nieudany odczyt monety.");
+                    Console.WriteLine("Nieudany odczyt");
                     return;
                 }
                 //sprawdż czy rzucona moneta jest z zakresu _przyjmowaneMonety
@@ -35,6 +39,11 @@ namespace KontoBankoweMonety
                         konto.Saldo += nominal;
                         _iloscmonet++;
                         Console.WriteLine("wrzucono: " + nominal);
+                    }
+                    else
+                    {
+                        Console.WriteLine("nierozpoznana moneta");
+                        return;
                     }
                 }
             }

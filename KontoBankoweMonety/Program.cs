@@ -14,6 +14,10 @@
             automat.wrzucMonete(KontoJana, 1234,  "0,50");
             KontoJana.wyswietlInfo();
             automat.wrzucMonete(KontoJana, 1254, "0,50");
+            KontoJana.wyswietlInfo();
+            automat.wrzucMonete(KontoJana, 1234, "0,560");
+            KontoJana.wyswietlInfo();
+            
         }
     }
 }
