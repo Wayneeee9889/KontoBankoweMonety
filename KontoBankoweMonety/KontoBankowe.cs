@@ -7,13 +7,25 @@ namespace KontoBankoweMonety
     internal class KontoBankowe
     {
 
-
         private decimal _saldo;
         private string _wlasciciel;
-
         private int _pin;
+        private string _numerKonta;
+
+     
+        
 
 
+
+        public string NumerKonta
+        {
+            get
+            {
+                return _numerKonta;
+            }
+            set { }
+            
+        }
 
 
         public decimal Saldo
@@ -35,11 +47,7 @@ namespace KontoBankoweMonety
             {
                 return _pin;
             }
-            set
-            {
-                _pin = value;
-
-            }
+            set{}
         }
 
         public string Wlasciciel
@@ -62,17 +70,18 @@ namespace KontoBankoweMonety
             }
         }
 
-        public KontoBankowe(string nowyWlasciciel, int pin)
+        public KontoBankowe(string nowyWlasciciel, int pin, string numerKonta)
         {
             _wlasciciel = nowyWlasciciel;
             _pin = pin;
+            
         }
 
 
 
 // numer musi być generowany wraz z utworzeniem konta
 
-        public void wyswietlInfo()
+        public void StanKonta()
         {
  
             Console.WriteLine($"Wlaściciel: {_wlasciciel}  |Saldo: {_saldo} ");

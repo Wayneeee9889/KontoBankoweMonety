@@ -9,15 +9,19 @@
             Automat automat = new Automat();
 
 
-            automat.wrzucMonete(KontoJana, 1234, "5");
-            KontoJana.wyswietlInfo();
-            automat.wrzucMonete(KontoJana, 1234,  "0,50");
-            KontoJana.wyswietlInfo();
-            automat.wrzucMonete(KontoJana, 1254, "0,50");
-            KontoJana.wyswietlInfo();
-            automat.wrzucMonete(KontoJana, 1234, "0,560");
-            KontoJana.wyswietlInfo();
-            
+            automat.Wplac(KontoJana, 1234, "5");
+            KontoJana.StanKonta();
+
+            automat.Wplac(KontoJana, 1234,  "0.50");
+            KontoJana.StanKonta();
+
+            automat.Wplac(KontoJana, 1254, "0,50");
+            KontoJana.StanKonta();
+
+            automat.Wplac(KontoJana, 1234, "0,560");
+            KontoJana.StanKonta();
+
+            automat.Wplac(KontoJana, 1234, "6");
         }
     }
 }

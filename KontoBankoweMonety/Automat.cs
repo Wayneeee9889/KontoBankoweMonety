@@ -17,7 +17,7 @@ namespace KontoBankoweMonety
 
         private readonly decimal[] _przyjmowaneMonety = new decimal[] { 5, 2, 1, 0.5m, 0.2m, 0.1m };
 
-        public void wrzucMonete(KontoBankowe konto, int Pin, string Moneta)
+        public void Wplac(KontoBankowe konto, int Pin, string Moneta)
         {
             string monetaUjednoliczonyzapis = Moneta.Replace(",", ".");
 
@@ -27,7 +27,7 @@ namespace KontoBankoweMonety
 
                 if (!czyUdanyParse)
                 {
-                    Console.WriteLine("Nieudany odczyt");
+                    Console.WriteLine("Nieudany odczyt monety");
                     return;
                 }
                 //sprawdż czy rzucona moneta jest z zakresu _przyjmowaneMonety
@@ -39,12 +39,9 @@ namespace KontoBankoweMonety
                         konto.Saldo += nominal;
                         _iloscmonet++;
                         Console.WriteLine("wrzucono: " + nominal);
+                        break;
                     }
-                    else
-                    {
-                        Console.WriteLine("nierozpoznana moneta");
-                        return;
-                    }
+        
                 }
             }
             else
