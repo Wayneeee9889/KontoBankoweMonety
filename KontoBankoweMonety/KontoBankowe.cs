@@ -48,10 +48,21 @@ namespace KontoBankoweMonety
             {
                 return _pin;
             }
-            set{}
+            set
+            {
+                if (value.ToString().Length == 4)
+                {
+                    _pin = value;
+                }
+                else
+                {
+                    _pin = 0000;
+                    throw new ArgumentException("Błąd: Pin ma mieć dokładnie 4 cyfry.");
+                }
+            }
         }
 
-        public string Wlasciciel
+        public string Wlascicel
         {
             get
             {
@@ -60,31 +71,24 @@ namespace KontoBankoweMonety
             set
             {
                 //walidacja
-                if (!string.IsNullOrWhiteSpace(value))
+                if (value == string.Empty)
                 {
-                    _wlasciciel = value;
+                    throw new ArgumentException("Błąd: nazwa wlaściciela nie może być pusta!");
                 }
                 else
                 {
-                    throw new ArgumentException("Błąd! Nazwa właciciela nie może być pusta");
+                    _wlasciciel = value;
                 }
             }
         }
 
         public KontoBankowe(string nowyWlasciciel, int ustawionyPin)
         {
-            Wlasciciel = nowyWlasciciel;    
+            Wlascicel = nowyWlasciciel;    
             _saldo = 0;
-            int liczbaDopuszczalnaPin = 4;
-            if(ustawionyPin.ToString().Length < liczbaDopuszczalnaPin && ustawionyPin.ToString().Length > 4)
-            {
-                _pin = 0000;
-                throw new ArgumentException("Pin musi zawierać 4 liczby! Ustawiono domyślnie 0000.");
-            }
-            else
-            {
-                _pin = ustawionyPin;
-            }
+            Pin = ustawionyPin;
+            
+       
             Console.WriteLine($"Ustawiono nowy pin dla konta {_wlasciciel}");
 
 
