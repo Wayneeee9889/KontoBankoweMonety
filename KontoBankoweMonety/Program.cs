@@ -22,6 +22,12 @@
             KontoJana.StanKonta();
 
             automat.Wplac(KontoJana, 1234, "6");
+
+            KontoBankowe KontoB = new KontoBankowe("", 298 );
+
+            KontoB.StanKonta();
+
+
         }
     }
 }

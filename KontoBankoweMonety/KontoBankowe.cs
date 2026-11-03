@@ -6,7 +6,8 @@ namespace KontoBankoweMonety
 {
     internal class KontoBankowe
     {
-
+        Random rnd = new Random();
+       
         private decimal _saldo;
         private string _wlasciciel;
         private int _pin;
@@ -23,7 +24,7 @@ namespace KontoBankoweMonety
             {
                 return _numerKonta;
             }
-            set { }
+            set {}
             
         }
 
@@ -65,16 +66,37 @@ namespace KontoBankoweMonety
                 }
                 else
                 {
-                    Console.WriteLine("Błąd! Nazwa właćciciela nie może być pusta");
+                    throw new ArgumentException("Błąd! Nazwa właciciela nie może być pusta");
                 }
             }
         }
 
-        public KontoBankowe(string nowyWlasciciel, int pin, string numerKonta)
+        public KontoBankowe(string nowyWlasciciel, int ustawionyPin)
         {
-            _wlasciciel = nowyWlasciciel;
-            _pin = pin;
+            Wlasciciel = nowyWlasciciel;    
+            _saldo = 0;
+            int liczbaDopuszczalnaPin = 4;
+            if(ustawionyPin.ToString().Length < liczbaDopuszczalnaPin && ustawionyPin.ToString().Length > 4)
+            {
+                _pin = 0000;
+                throw new ArgumentException("Pin musi zawierać 4 liczby! Ustawiono domyślnie 0000.");
+            }
+            else
+            {
+                _pin = ustawionyPin;
+            }
+            Console.WriteLine($"Ustawiono nowy pin dla konta {_wlasciciel}");
+
+
             
+            int liczbaLiczbWSekwencjiNumeru = 24;
+
+            for (int i = 0; i < liczbaLiczbWSekwencjiNumeru; i++)
+            {
+                var nastepnaLiczbaNumeru = rnd.Next(0, 10);
+                _numerKonta = _numerKonta += nastepnaLiczbaNumeru.ToString();
+            }
+
         }
 
 
@@ -84,7 +106,7 @@ namespace KontoBankoweMonety
         public void StanKonta()
         {
  
-            Console.WriteLine($"Wlaściciel: {_wlasciciel}  |Saldo: {_saldo} ");
+            Console.WriteLine($"Wlaściciel: {_wlasciciel}  |Saldo: {_saldo} |Nr konta: {_numerKonta}");
         }
     }
 }
