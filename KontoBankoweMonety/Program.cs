@@ -15,15 +15,15 @@
             automat.Wplac(KontoJana, 1234,  "0.50");
             KontoJana.StanKonta();
 
-            automat.Wplac(KontoJana, 1254, "0,50");
+            automat.Wplac(KontoJana, 1234, "0,5");
             KontoJana.StanKonta();
 
             automat.Wplac(KontoJana, 1234, "0,560");
             KontoJana.StanKonta();
 
-            automat.Wplac(KontoJana, 1234, "6");
+            automat.Wplac(KontoJana, 1234, "");
 
-            KontoBankowe KontoB = new KontoBankowe("sdadd", 298 );
+            KontoBankowe KontoB = new KontoBankowe("sdadd", 2987 );
 
             KontoB.StanKonta();
 
